@@ -1,3 +1,5 @@
+import { ObjectId } from "mongoose";
+
 const IUserRoles = ["user", "admin"] as const
 export type RolesType = typeof IUserRoles[number]
 export default interface IUserSchema {
@@ -12,6 +14,7 @@ export default interface IUserSchema {
     description?: string;
     user_status?: string,
     email_verified?: boolean
+    companyId: ObjectId 
     createdAt?: Date;
     updatedAt?: Date;
 }

@@ -4,6 +4,7 @@ import IUserSchema from "../interfaces/user.interface";
 
 const userSchema = new Schema<IUserSchema>({
     username: { type: String, required: true },
+    companyId: { type: mongoose.Types.ObjectId, ref: "company" },
     phone_number: { type: String },
     email: { type: String, required: true },
     gender: { type: String, enum: ["M", "F"], required: true },

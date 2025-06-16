@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-   "workspaces": [
+  "workspaces": [
     "backend/*",
     "backend/users"
   ],
-    "scripts": {
+  "scripts": {
     "start": "concurrently \"yarn workspace gateway dev\""
   },
   "dependencies": {
