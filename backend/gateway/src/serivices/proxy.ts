@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import routes from "../routes";
 import axios from "axios";
 import { AxiosError} from "@/src/types/axios"
+import {HttpStatus} from "@/src/utils/http-status";
 export async function handleProxy(req: Request, res: Response): Promise<void> {
     const method = req.method.toLowerCase();
     const path = req.path;
@@ -12,7 +13,7 @@ export async function handleProxy(req: Request, res: Response): Promise<void> {
     );
 
     if (!matchedRoute || !matchedRoute.target) {
-        res.status(502).json({ message: "No backend target defined!" });
+        res.status(HttpStatus.BAD_GATEWAY).json({ message: "No backend target defined!" });
         return;
     }
 
@@ -42,7 +43,7 @@ export async function handleProxy(req: Request, res: Response): Promise<void> {
                 detail: message,
             });
         } else {
-            res.status(500).json({
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 message: 'Proxy error',
                 detail: 'No response from upstream service',
             });

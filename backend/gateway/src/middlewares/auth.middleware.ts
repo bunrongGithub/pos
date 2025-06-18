@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import routes from '../routes';
 import config from '../configs';
+import {HttpStatus} from "@/src/utils/http-status";
 
 // Extend Express Request interface to include 'user'
 
@@ -22,13 +23,13 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
   });
 
   if (!matchedRoute) {
-    res.status(404).json({ message: 'Route not found in gateway config' });
+    res.status(HttpStatus.NOT_FOUND).json({ message: 'Route not found in gateway config' });
     return;
   }
 
   const methodConfig = matchedRoute?.method?.[method]
   if (!methodConfig) {
-    res.status(405).json({ message: 'Method not allowed for this route' });
+    res.status(HttpStatus.METHOD_NOT_FOUND).json({ message: 'Method not allowed for this route' });
     return;
   }
 
@@ -39,7 +40,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
 
   const authHeader = req.headers['authorization'];
   if (!authHeader?.startsWith('Bearer ')) {
-    res.status(401).json({ message: 'Missing or invalid access token' });
+    res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Missing or invalid access token' });
     return;
   }
 
@@ -49,13 +50,13 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
 
     req.user! = decoded; // attach to request
     if (!methodConfig.roles.includes(decoded.role)) {
-      res.status(403).json({ message: 'Insufficient role permissions' });
+      res.status(HttpStatus.FORBIDDEN).json({ message: 'Insufficient role permissions' });
       return;
     }
 
     next();
   } catch (err) {
-    res.status(401).json({ message: 'Invalid token' });
+    res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Invalid token' });
     return;
   }
 }
