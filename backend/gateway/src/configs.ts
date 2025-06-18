@@ -15,7 +15,7 @@ const loadConfig = (): Config => {
     const _env_var_schema = Joi.object({
         NODE_ENV: Joi.string().required(),
         PORT: Joi.number().required(),
-        JWT_SECRET_KEY: Joi.number().required()
+        JWT_SECRET_KEY: Joi.string().required()
     }).unknown().required()
     const { value: envVars, error } = _env_var_schema.validate(process.env)
     if (error) {

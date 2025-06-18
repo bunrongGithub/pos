@@ -16,18 +16,17 @@ export interface UserPayload {
 export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
   const path = req.path;
   const method = req.method.toLowerCase();
-
   // match route
-  const matchedRoute = Object.values(routes).find((route) =>
-    path.startsWith(route.path)
-  );
+  const matchedRoute = Object.values(routes).find((route) =>{
+    return path.startsWith(route.path)
+  });
 
   if (!matchedRoute) {
     res.status(404).json({ message: 'Route not found in gateway config' });
     return;
   }
 
-  const methodConfig = matchedRoute.method?.[method];
+  const methodConfig = matchedRoute?.method?.[method]
   if (!methodConfig) {
     res.status(405).json({ message: 'Method not allowed for this route' });
     return;
@@ -48,7 +47,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
     const token = authHeader.replace('Bearer ', '');
     const decoded = jwt.verify(token, config.jwtSecret) as UserPayload;
 
-    req.user = decoded; // attach to request
+    req.user! = decoded; // attach to request
     if (!methodConfig.roles.includes(decoded.role)) {
       res.status(403).json({ message: 'Insufficient role permissions' });
       return;

@@ -1,10 +1,10 @@
 import app from "./app";
-
+import config from "./configs"
 
 const runServer = async () => {
     try {
-        app.listen(4000, function () {
-            console.info(`Gateway running on port 4000`)
+        app.listen(config.port, function () {
+            console.info(`Gateway running on port ${config.port}`);
         })
     } catch (error) {
         throw error

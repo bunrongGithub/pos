@@ -1,7 +1,8 @@
-import axios from "axios";
+
 import { Request, Response } from "express";
 import routes from "../routes";
-
+import axios from "axios";
+import { AxiosError} from "@/src/types/axios"
 export async function handleProxy(req: Request, res: Response): Promise<void> {
     const method = req.method.toLowerCase();
     const path = req.path;
@@ -26,12 +27,25 @@ export async function handleProxy(req: Request, res: Response): Promise<void> {
             },
             data: req.body
         });
-
         res.status(axiosRes.status).json(axiosRes.data);
-    } catch (error: any) {
-        res.status(error.response?.status || 500).json({
-            message: 'Proxy error',
-            detail: error.message
-        });
+    } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response) {
+            const {
+                status,
+                data: { message },
+            } = axiosError.response;
+
+            res.status(status).json({
+                message: 'Proxy error',
+                detail: message,
+            });
+        } else {
+            res.status(500).json({
+                message: 'Proxy error',
+                detail: 'No response from upstream service',
+            });
+        }
     }
 }

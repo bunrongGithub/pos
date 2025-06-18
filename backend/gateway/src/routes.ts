@@ -14,20 +14,20 @@ const routes: IRoutes = {
         path: "/v1/auth",
         target: "http://localhost:4001",
         method: {
-            GET: { authRequired: false, roles: ["admin", "cashier", "user"] },
-            POST: { authRequired: true, roles: ["admin", "cashier", "user"] },
-            PUT: { authRequired: true, roles: ["admin", "cashier", "user"] },
-            DELETE: { authRequired: true, roles: ["admin", "cashier", "user"] }
+            get: { authRequired: false, roles: ["admin", "cashier", "user"] },
+            post: { authRequired: true, roles: ["admin", "cashier", "user"] },
+            put: { authRequired: true, roles: ["admin", "cashier", "user"] },
+            delete: { authRequired: true, roles: ["admin", "cashier", "user"] }
         }
     },
     USER_SERVICE: {
         path: "/v1/users",
         target: "http://localhost:4002",
         method: {
-            GET: { authRequired: false, roles: ["admin", "cashier", "user"] },
-            POST: { authRequired: true, roles: ["admin", "cashier", "user"] },
-            PUT: { authRequired: true, roles: ["admin", "cashier", "user"] },
-            DELETE: { authRequired: true, roles: ["admin", "cashier", "user"] }
+            get: { authRequired: false, roles: ["admin", "cashier", "user"] },
+            post: { authRequired: true, roles: ["admin", "cashier", "user"] },
+            put: { authRequired: true, roles: ["admin", "cashier", "user"] },
+            delete: { authRequired: true, roles: ["admin", "cashier", "user"] }
         }
     }
 }
