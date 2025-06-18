@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
-const IUserRoles = ["user", "admin", "manager", "cashier", "supervisor", "owner", "hr", "it", "auditor"] as const;
+export const IUserRoles = ["user", "admin", "manager", "cashier", "supervisor", "owner", "hr", "it", "auditor"] as const;
 export type RolesType = typeof IUserRoles[number];
 
 export default interface IUserSchema {

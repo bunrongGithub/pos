@@ -12,5 +12,5 @@ interface IRoute{
             roles: UserRolesType 
         }
     },
-    nestedRoutes?: IRoute[] | undefined; 
+    nestedRoutes?: IRoute[]; 
 }
