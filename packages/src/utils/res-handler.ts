@@ -12,14 +12,14 @@ export class AppResponse<T> {
         this.success = success
         this.timestamp = new Date()
     }
-    public static success<T>(data: T, message = "Success", statusCode = 200): ApiResponse<T> {
-        return new ApiResponse<T>(data, statusCode, message, true)
+    public static success<T>(data: T, message = "Success", statusCode = 200): AppResponse<T> {
+        return new AppResponse<T>(data, statusCode, message, true)
     }
-    public static created<T>(data: T, message = "Resource created successfully"): ApiResponse<T> {
-        return new ApiResponse<T>(data, 201, message, true)
+    public static created<T>(data: T, message = "Resource created successfully"): AppResponse<T> {
+        return new AppResponse<T>(data, 201, message, true)
     }
-    public static noContent<T = null>(message = "No content"): ApiResponse<T> {
-        return new ApiResponse<T>(null as T, 204, message, true)
+    public static noContent<T = null>(message = "No content"): AppResponse<T> {
+        return new AppResponse<T>(null as T, 204, message, true)
     }
     public toJSON(): Record<string, any> {
         return {

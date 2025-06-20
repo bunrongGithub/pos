@@ -1,4 +1,5 @@
-import {HttpStatus} from "../http-status"
+import { HttpStatus } from "../constants";
+
 
 export class ApiResHandler extends Error{
     public readonly statusCode: number;

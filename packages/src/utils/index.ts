@@ -1,1 +1,1 @@
-export * from "./response-handler"
+export * from "./res-handler"
