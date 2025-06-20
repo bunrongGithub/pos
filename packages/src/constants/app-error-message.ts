@@ -103,3 +103,44 @@ export class AuthMessages {
     TROUBLE_LOGGING_IN: "Trouble logging in? Let's get you a new password.",
   };
 }
+
+export class AppMessage {
+  static GENERAL = {
+    INTERNAL: (message = "Internal Server Error") => message,
+    UNKNOWN: (message = "An unknown error occurred") => message,
+    TIMEOUT: (message = "Request timed out") => message,
+    SERVICE_UNAVAILABLE: (message = "Service is temporarily unavailable") => message,
+  };
+
+  static AUTH = {
+    UNAUTHORIZED: (message = "Unauthorized access") => message,
+    FORBIDDEN: (message = "You do not have permission") => message,
+    TOKEN_EXPIRED: (message = "Authentication token has expired") => message,
+    INVALID_CREDENTIALS: (message = "Invalid email or password") => message,
+    LOGIN_SUCCESS: (message = "Login successful") => message,
+    LOGOUT_SUCCESS: (message = "Logout successful") => message,
+  };
+
+  static VALIDATION = {
+    REQUIRED: (field: string) => `${field} is required`,
+    INVALID: (field: string) => `${field} is invalid`,
+    TOO_SHORT: (field: string, min: number) => `${field} must be at least ${min} characters`,
+    TOO_LONG: (field: string, max: number) => `${field} must be at most ${max} characters`,
+    NOT_MATCH: (fieldA: string, fieldB: string) => `${fieldA} must match ${fieldB}`,
+  };
+
+  static RESOURCE = {
+    NOT_FOUND: (resource = "Resource") => `${resource} not found`,
+    ALREADY_EXISTS: (resource = "Resource") => `${resource} already exists`,
+    CREATED: (resource = "Resource") => `${resource} created successfully`,
+    UPDATED: (resource = "Resource") => `${resource} updated successfully`,
+    DELETED: (resource = "Resource") => `${resource} deleted successfully`,
+  };
+
+  static BUSINESS = {
+    ACTION_FORBIDDEN: (action = "This action") => `${action} is not allowed`,
+    LIMIT_REACHED: (item = "Limit") => `${item} has been reached`,
+    OPERATION_FAILED: (operation = "Operation") => `${operation} failed`,
+    OPERATION_SUCCESS: (operation = "Operation") => `${operation} completed successfully`,
+  };
+}
