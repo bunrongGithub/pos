@@ -6,7 +6,8 @@
   "license": "MIT",
   "workspaces": [
     "backend/*",
-    "backend/users"
+    "backend/users",
+    "packages/*"
   ],
   "scripts": {
     "start": "concurrently \"yarn workspace gateway dev\""
