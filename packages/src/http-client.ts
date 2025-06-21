@@ -1,3 +1,4 @@
+import axios from "axios";
 import { AppMessage, HttpStatus } from "./constants";
 import { ApiResHandler } from "./errors/app-error-handler";
 
@@ -23,3 +24,20 @@ http.interceptors.response.use(
     return Promise.reject(new ApiResHandler(message,status,details))
   }
 );
+export const HttpClient = {
+  get: (url: string, config?: any) => {
+    return http.get(url, config);
+  },
+  post: (url: string, data?: any, config?: any) => {
+    return http.post(url, data, config);
+  },
+  put: (url: string, data?: any, config?: any) => {
+    return http.put(url, data, config);
+  },
+  delete: (url: string, config?: any) => {
+    return http.delete(url, config);
+  },
+  patch: (url: string, data?: any, config?: any) => {
+    return http.patch(url, data, config);
+  },
+}
