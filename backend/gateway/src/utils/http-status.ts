@@ -14,4 +14,8 @@ export class HttpStatus {
     static readonly NOT_IMPLEMENTED = 501;
     static readonly BAD_GATEWAY = 502;
     static readonly SERVICE_UNAVAILABLE = 503;
+    static readonly UNPROCESSABLE_ENTITY = 422;
+    static readonly TOO_MANY_REQUESTS = 429
+    static GATEWAY_TIMEOUT = 504;
+
 }
