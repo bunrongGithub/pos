@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "tsoa:gen": "tsoa spec && tsoa routes",
+    "dev": "yarn tsoa:gen && nodemon src/server.ts"
   },
   "dependencies": {
     "@types/mongoose": "^5.11.97",
@@ -16,11 +17,14 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^22.15.30",
+    "@types/swagger-ui-express": "^4.1.8",
     "eslint": "^9.28.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
+    "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsoa": "^6.6.0",
     "typescript": "^5.8.3"
   }
 }

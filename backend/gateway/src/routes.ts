@@ -30,6 +30,9 @@ const routes: IRoutes = {
             delete: { authRequired: true, roles: ["admin", "cashier", "user"] }
         }
     }
+    POS: {
+        path: "/v1/pos",
+    }
 }
 
 
